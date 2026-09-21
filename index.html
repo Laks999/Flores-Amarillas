@@ -97,8 +97,8 @@
 <canvas id="galaxy"></canvas>
 
 <audio id="musica" loop>
-  <source src="" type="audio/mpeg">
-</audio>
+  <source src="cancion.mp3" type="audio/mpeg">
+</audio>>
 
 <script type="importmap">
 {
@@ -387,10 +387,12 @@ document.getElementById('btn-entrar').addEventListener('click', () => {
   if(isMobile) document.getElementById('hint').style.display = 'block';
   
   // Solución al posible error que trababa el script por culpa del audio
+  // Solución al posible error que trababa el script por culpa del audio
   try {
     const a = document.getElementById('musica');
-    if (a.readyState >= 1) { // Solo asigna el tiempo si el audio ya cargó
-        a.currentTime = 16;
+    if (a.readyState >= 1) { 
+        // 👇 AQUÍ PONES EL SEGUNDO EXACTO 👇
+        a.currentTime = 164; 
     }
     a.play().catch(()=>{});
   } catch (error) {
