@@ -377,7 +377,7 @@ for(let i=0;i<24;i++){
 scene.add(new THREE.AmbientLight(0xFFE8F8,0.28)); 
 const pl=new THREE.PointLight(0xFFD700,2.8,430);scene.add(pl); 
 
-// --- EVENTO DEL BOTÓN (CORREGIDO) ---
+// --- EVENTO DEL BOTÓN ---
 document.getElementById('btn-entrar').addEventListener('click', () => {
   const m = document.getElementById('modal');
   m.classList.add('oculto');
@@ -386,18 +386,15 @@ document.getElementById('btn-entrar').addEventListener('click', () => {
   
   if(isMobile) document.getElementById('hint').style.display = 'block';
   
-  // Solución al posible error que trababa el script por culpa del audio
-  // Solución al posible error que trababa el script por culpa del audio
+  // --- NUEVA LÓGICA DE AUDIO DIRECTA ---
   try {
     const a = document.getElementById('musica');
-    if (a.readyState >= 1) { 
-        // 👇 AQUÍ PONES EL SEGUNDO EXACTO 👇
-        a.currentTime = 164; 
-    }
-    a.play().catch(()=>{});
+    a.currentTime = 164; // Pon aquí el segundo exacto (ej. 164 para Night Changes)
+    a.play();
   } catch (error) {
-    console.warn("Audio ignorado temporalmente");
+    console.log("Error de audio: ", error);
   }
+  // ------------------------------------
 
   // 1. Desactivamos los controles
   controls.enabled = false;
